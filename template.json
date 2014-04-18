@@ -1,0 +1,50 @@
+{
+    "variables": {
+        "aws_access_key": "",
+        "aws_secret_key": ""
+    },
+
+    "builders": [{
+            "type": "amazon-ebs",
+            "access_key": "{{user `aws_access_key`}}",
+            "secret_key": "{{user `aws_secret_key` }}",
+            "region": "us-west-2",
+            "source_ami": "ami-8e1d79be",
+            "instance_type": "c1.medium",
+            "ssh_username": "ubuntu",
+            "ami_name": "consul {{timestamp}}"
+            },
+            {
+              "type": "digitalocean",
+              "image_id": "1505447",
+              "size_id": "63",
+              "snapshot_name": "consul {{timestamp}}"
+            },
+            {
+              "type": "openstack",
+              "username": "",
+              "password": "",
+              "provider": "",
+              "region": "DFW",
+              "ssh_username": "root",
+              "image_name": "consul {{timestamp}}",
+              "source_image": "23b564c9-c3e6-49f9-bc68-86c7a9ab5018",
+              "flavor": "3"
+            },
+            {
+              "type": "googlecompute",
+              "project_id": "",
+              "bucket_name": "consul-packer-images",
+              "client_secrets_file": "google.json",
+              "private_key_file": "google.pem",
+              "source_image": "debian-7-wheezy-v20131120",
+              "zone": "us-central1-a",
+              "image_name": "consul-{{timestamp}}"
+            }],
+
+    "provisioners": [{
+      "type": "chef-solo",
+      "cookbook_paths": ["./vendor/cookbooks"],
+      "run_list": [ "consul" ]
+    }]
+}
