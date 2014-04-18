@@ -6,23 +6,45 @@ Requirements
 
 ### Platform:
 
-*List supported platforms here*
+Ubuntu 12.04LTS
 
 ### Cookbooks:
 
-*List cookbook dependencies here*
+None.
 
 Attributes
 ----------
 
-*List attributes here*
+```
+default['consul']['filename'] = '0.1.0_linux_amd64.zip'
+default['consul']['url'] = "https://dl.bintray.com/mitchellh/consul/#{default['consul']['filename']}"
+default['consul']['checksum'] = '80912eb136acf5ac6ba77284138e4536cd1289870f202ed17ed67bbf2c6b630c'
+default['consul']['tmp'] = "/tmp/#{default['consul']['filename']}"
+default['consul']['destination'] = '/usr/local/bin/consul'
+
+default['consul']['config_path'] = '/etc/consul'
+default['consul']['config_d_dir'] = '/etc/consul/config.d'
+default['consul']['data_dir'] = '/var/cache/consul'
+
+default['consul']['config_file_path'] = "#{node['consul']['config_path']}/config.json"
+
+default['consul']['datacenter'] = 'dc1'
+default['consul']['log_level'] = 'INFO'
+default['consul']['node_name'] = 'consul-random-name'
+default['consul']['bind_addr'] = '0.0.0.0'
+default['consul']['advertise_addr'] = '127.0.0.1' # Change me.
+default['consul']['domain'] = 'consul.'
+default['consul']['encrypt'] = 'p4T1eTQtKji/Df3VrMMLzg==' # Change me.
+default['consul']['server'] = true
+default['consul']['bootstrap'] = true
+```
 
 Recipes
 -------
 
 ### consul::default
 
-*Explain what the recipe does here*
+Installs [Hashicorp's Consul](http://www.consul.io/) on Ubuntu 12.04LTS.
 
 ### Packer Build
 
@@ -32,11 +54,11 @@ In order to build an Amazon AMI, DigitalOcean Droplet, Google Compute or Rackspa
     export SDK_USERNAME="username"  # Same as here: https://mycloud.rackspace.com/
     export SDK_PASSWORD="password-to-login" # Not the API key.
     export SDK_PROVIDER="rackspace-us" # Or rackspace-uk
-    
+
     # EC2 - can be found here: https://portal.aws.amazon.com/gp/aws/securityCredentials?
     export AWS_ACCESS_KEY="long-random-string"
     export AWS_SECRET_KEY="another-even-longer-long-random-string"
-    
+
     # Digital Ocean - get these here: https://cloud.digitalocean.com/api_access
     export DIGITALOCEAN_CLIENT_ID="long-random-string"
     export DIGITALOCEAN_API_KEY="another-long-random-string"
