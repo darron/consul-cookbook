@@ -9,7 +9,7 @@
             "access_key": "{{user `aws_access_key`}}",
             "secret_key": "{{user `aws_secret_key` }}",
             "region": "us-west-2",
-            "source_ami": "ami-8e1d79be",
+            "source_ami": "ami-8ab4dfba",
             "instance_type": "c1.medium",
             "ssh_username": "ubuntu",
             "ami_name": "consul {{timestamp}}"
@@ -28,7 +28,7 @@
               "region": "DFW",
               "ssh_username": "root",
               "image_name": "consul {{timestamp}}",
-              "source_image": "23b564c9-c3e6-49f9-bc68-86c7a9ab5018",
+              "source_image": "92f51721-5758-4137-ab05-136bb9470093",
               "flavor": "3"
             },
             {
