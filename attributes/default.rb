@@ -37,5 +37,15 @@ default['consul']['bind_addr'] = '0.0.0.0'
 default['consul']['advertise_addr'] = '127.0.0.1' # Change me.
 default['consul']['domain'] = 'consul.'
 default['consul']['encrypt'] = 'p4T1eTQtKji/Df3VrMMLzg==' # Change me.
+default['consul']['recursor'] = '8.8.8.8'
 default['consul']['server'] = true
 default['consul']['bootstrap'] = true
+
+# If you want to enable RPC encryption, change these defaults
+# And read more here: http://www.consul.io/docs/agent/encryption.html
+#
+# default['consul']['key_file'] = "#{node['consul']['config_path']}/key.key"
+# default['consul']['cert_file'] = "#{node['consul']['config_path']}/cert.crt"
+# default['consul']['ca_file'] = "#{node['consul']['config_path']}/ca.key"
+# default['consul']['verify_outgoing'] = true
+# default['consul']['verify_incoming'] = true

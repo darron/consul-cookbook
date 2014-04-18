@@ -7,7 +7,15 @@
   "bind_addr": "<%= node['consul']['bind_addr'] %>",
   "advertise_addr": "<%= node['consul']['advertise_addr'] %>",
   "domain": "<%= node['consul']['domain'] %>",
+  "recursor": "<%= node['consul']['recursor'] %>",
   "encrypt": "<%= node['consul']['encrypt'] %>",
+<%- if node['consul']['key_file'] && node['consul']['cert_file'] && node['consul']['ca_file'] %>
+  "key_file": "<%= node['consul']['key_file'] %>",
+  "cert_file": "<%= node['consul']['cert_file'] %>",
+  "ca_file": "<%= node['consul']['ca_file'] %>",
+  "verify_outgoing": <%= node['consul']['verify_outgoing'] %>,
+  "verify_incoming": <%= node['consul']['verify_incoming'] %>,
+<%- end %>
   "server": <%= node['consul']['server'] %>,
   "bootstrap": <%= node['consul']['bootstrap'] %>
 }
