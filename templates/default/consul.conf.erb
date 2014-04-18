@@ -1,0 +1,10 @@
+description     "Consul agent"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+respawn
+
+script
+  exec /usr/local/bin/consul agent -config-file <%= node['consul']['config_file_path'] %>
+end script

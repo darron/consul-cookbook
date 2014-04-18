@@ -18,4 +18,70 @@
 # limitations under the License.
 #
 
+package 'unzip'
+
 include_recipe 'chef-sugar::default'
+
+directory node['consul']['config_path'] do
+  owner 'root'
+  group 'root'
+  mode '0755'
+  recursive true
+  action :create
+end
+
+directory node['consul']['config_d_dir'] do
+  owner 'root'
+  group 'root'
+  mode '0755'
+  recursive true
+  action :create
+end
+
+directory node['consul']['data_dir'] do
+  owner 'root'
+  group 'root'
+  mode '0755'
+  recursive true
+  action :create
+end
+
+template '/etc/init/consul.conf' do
+  source 'consul.conf.erb'
+  owner 'root'
+  group 'root'
+  mode '0744'
+end
+
+link '/etc/init.d/consul' do
+  to '/lib/init/upstart-job'
+end
+
+template node['consul']['config_file_path'] do
+  source 'config.erb'
+  owner 'root'
+  group 'root'
+  mode '0744'
+  notifies :restart, 'service[consul]', :delayed
+end
+
+remote_file node['consul']['tmp'] do
+  source node['consul']['url']
+  checksum node['consul']['checksum']
+  owner 'root'
+  group 'root'
+  mode 00755
+end
+
+bash 'extract consul' do
+  cwd ::File.dirname(node['consul']['tmp'])
+  code <<-EOH
+    unzip #{node['consul']['filename']}
+    mv consul #{node['consul']['destination']}
+    EOH
+  not_if { ::File.exist?(node['consul']['destination']) }
+end
+
+service 'consul' do
+  action [:enable, :start]
+end

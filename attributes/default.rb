@@ -18,4 +18,24 @@
 # limitations under the License.
 #
 
-# Set meaningful node attributes here
+default['consul']['filename'] = '0.1.0_linux_amd64.zip'
+default['consul']['url'] = "https://dl.bintray.com/mitchellh/consul/#{default['consul']['filename']}"
+default['consul']['checksum'] = '80912eb136acf5ac6ba77284138e4536cd1289870f202ed17ed67bbf2c6b630c'
+default['consul']['tmp'] = "/tmp/#{default['consul']['filename']}"
+default['consul']['destination'] = '/usr/local/bin/consul'
+
+default['consul']['config_path'] = '/etc/consul'
+default['consul']['config_d_dir'] = '/etc/consul/config.d'
+default['consul']['data_dir'] = '/var/cache/consul'
+
+default['consul']['config_file_path'] = "#{node['consul']['config_path']}/config.json"
+
+default['consul']['datacenter'] = 'dc1'
+default['consul']['log_level'] = 'INFO'
+default['consul']['node_name'] = 'consul-random-name'
+default['consul']['bind_addr'] = '0.0.0.0'
+default['consul']['advertise_addr'] = '127.0.0.1' # Change me.
+default['consul']['domain'] = 'consul.'
+default['consul']['encrypt'] = 'p4T1eTQtKji/Df3VrMMLzg==' # Change me.
+default['consul']['server'] = true
+default['consul']['bootstrap'] = true
