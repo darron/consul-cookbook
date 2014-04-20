@@ -55,6 +55,8 @@ Recipes
 
 Installs [Hashicorp's Consul](http://www.consul.io/) on Ubuntu 12.04LTS.
 
+To test a Consul cluster, grab my [consul vagrant](https://github.com/darron/consul-vagrant) repo and follow the instructions. Easiest way yet to get a Consul cluster going.
+
 ### Packer Build
 
 In order to build an Amazon AMI, DigitalOcean Droplet, Google Compute or Rackspace OpenStack image, you will need accounts for each. Export these values to get Packer to honor them automatically:
