@@ -6,5 +6,13 @@ stop on runlevel [!2345]
 respawn
 
 script
-  exec /usr/local/bin/consul agent -config-file <%= node['consul']['config_file_path'] %>
+  OPTIONS=""
+  if [ -e /etc/default/consul ]
+  then
+    . /etc/default/consul
+    echo "Sourcing config file."
+  else
+    echo "Config file not available."
+  fi
+  exec /usr/local/bin/consul agent -config-file <%= node['consul']['config_file_path'] %> $OPTIONS
 end script

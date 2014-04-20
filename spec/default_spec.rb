@@ -41,6 +41,10 @@ describe 'consul::default' do
     expect(chef_run).to create_template('/etc/consul/config.json')
   end
 
+  it 'creates the /etc/default/consul file' do
+    expect(chef_run).to create_cookbook_file('/etc/default/consul')
+  end
+
   it 'enables and starts the service' do
     expect(chef_run).to enable_service('consul')
     expect(chef_run).to start_service('consul')

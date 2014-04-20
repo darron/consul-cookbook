@@ -35,6 +35,10 @@ describe 'consul::default' do
     it { should be_file }
   end
 
+  describe file('/etc/default/consul') do
+    it { should be_file }
+  end
+
   describe file('/usr/local/bin/consul') do
     it { should be_file }
   end

@@ -59,6 +59,13 @@ directory node['consul']['data_dir'] do
   action :create
 end
 
+cookbook_file '/etc/default/consul' do
+  source 'consul'
+  owner 'root'
+  group 'root'
+  mode '0644'
+end
+
 template '/etc/init/consul.conf' do
   source 'consul.conf.erb'
   owner 'root'
