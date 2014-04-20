@@ -49,3 +49,6 @@ default['consul']['bootstrap'] = true
 # default['consul']['ca_file'] = "#{node['consul']['config_path']}/ca.key"
 # default['consul']['verify_outgoing'] = true
 # default['consul']['verify_incoming'] = true
+
+default['jq']['url'] = 'http://stedolan.github.io/jq/download/linux64/jq'
+default['jq']['path'] = '/usr/bin/jq'

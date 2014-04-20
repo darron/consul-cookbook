@@ -18,9 +18,22 @@
 # limitations under the License.
 #
 
-package 'unzip'
-
 include_recipe 'chef-sugar::default'
+
+execute 'apt-get update' do
+  command 'apt-get update'
+end
+
+package 'unzip'
+package 'curl'
+
+remote_file node['jq']['path'] do
+  source node['jq']['url']
+  owner 'root'
+  group 'root'
+  mode '00755'
+  action :create
+end
 
 directory node['consul']['config_path'] do
   owner 'root'

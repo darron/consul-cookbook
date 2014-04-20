@@ -9,6 +9,14 @@ describe 'consul::default' do
     expect(chef_run).to install_package('unzip')
   end
 
+  it 'installs the curl package' do
+    expect(chef_run).to install_package('curl')
+  end
+
+  it 'creates the jq file' do
+    expect(chef_run).to create_remote_file('/usr/bin/jq')
+  end
+
   it 'creates the config path' do
     expect(chef_run).to create_directory('/etc/consul')
   end
