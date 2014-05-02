@@ -121,7 +121,7 @@ bash 'extract consul web_ui' do
   user 'root'
   cwd node['web_ui']['destination']
   code <<-EOH
-    unzip #{node['web_ui']['filename']}
+    unzip #{node['web_ui']['tmp']}
   EOH
 end
 
