@@ -59,8 +59,8 @@ directory node['consul']['data_dir'] do
   action :create
 end
 
-cookbook_file '/etc/default/consul' do
-  source 'consul'
+template '/etc/default/consul' do
+  source 'consul.erb'
   owner 'root'
   group 'root'
   mode '0644'
@@ -100,6 +100,29 @@ bash 'extract consul' do
     mv consul #{node['consul']['destination']}
     EOH
   not_if { ::File.exist?(node['consul']['destination']) }
+end
+
+remote_file node['web_ui']['tmp'] do
+  source node['web_ui']['url']
+  owner 'root'
+  group 'root'
+  mode 00755
+end
+
+directory "#{node['web_ui']['destination']}" do
+  owner 'root'
+  group 'root'
+  mode '0755'
+  recursive true
+  action :create
+end
+
+bash 'extract consul web_ui' do
+  user 'root'
+  cwd "#{node['web_ui']['destination']}"
+  code <<-EOH
+    unzip #{node['web_ui']['filename']}
+  EOH
 end
 
 service 'consul' do
