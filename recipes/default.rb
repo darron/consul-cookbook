@@ -109,7 +109,7 @@ remote_file node['web_ui']['tmp'] do
   mode 00755
 end
 
-directory "#{node['web_ui']['destination']}" do
+directory node['web_ui']['destination'] do
   owner 'root'
   group 'root'
   mode '0755'
@@ -119,7 +119,7 @@ end
 
 bash 'extract consul web_ui' do
   user 'root'
-  cwd "#{node['web_ui']['destination']}"
+  cwd node['web_ui']['destination']
   code <<-EOH
     unzip #{node['web_ui']['filename']}
   EOH
