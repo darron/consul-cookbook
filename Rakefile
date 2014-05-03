@@ -105,6 +105,16 @@ task :convert_gce do
   sh 'openssl pkcs12 -in google.p12 -nocerts -passin pass:notasecret -nodes -out google.pem'
 end
 
+desc "Enable Docker build."
+task :docker_enable do
+  sh 'mv .kitchen.yml .kitchen-vagrant.yml; mv .kitchen-docker.yml .kitchen.yml'
+end
+
+desc "Disable Docker build."
+task :docker_disable do
+  sh 'mv .kitchen.yml .kitchen-docker.yml; mv .kitchen-vagrant.yml .kitchen.yml'
+end
+
 begin
   require "kitchen/rake_tasks"
   Kitchen::RakeTasks.new
