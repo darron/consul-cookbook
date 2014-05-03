@@ -98,6 +98,7 @@ bash 'extract consul' do
   code <<-EOH
     unzip #{node['consul']['filename']}
     mv consul #{node['consul']['destination']}
+    chmod 755 #{node['consul']['destination']}
     EOH
   not_if { ::File.exist?(node['consul']['destination']) }
 end
