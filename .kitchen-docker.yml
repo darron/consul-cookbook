@@ -2,26 +2,18 @@
 driver:
   name: docker
   socket: <%= ENV['DOCKER_HOST'] %>
- 
+
 provisioner:
   name: chef_solo
- 
+
 platforms:
   - name: ubuntu-12.04
     driver_config:
       image: darron/ubuntu:12.04
       platform: ubuntu
-  - name: ubuntu-13.04
-    driver_config:
-      image: darron/ubuntu:13.04
-      platform: ubuntu
-  - name: ubuntu-13.10
-    driver_config:
-      image: darron/ubuntu:13.10
-      platform: ubuntu
-      
+
 suites:
   - name: default
     run_list:
-      - recipe[skeleton::default]
+      - recipe[consul::default]
     attributes:
