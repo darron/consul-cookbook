@@ -10,6 +10,7 @@ gem "rubocop"
 gem "chef-taste"
 gem 'chef-sugar'
 gem 'hashie', '2.1.1'
+gem 'knife-solo'
 
 group :integration do
   gem "test-kitchen", "~> 1.0"
