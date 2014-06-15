@@ -45,6 +45,7 @@ default['consul']['encrypt'] = 'p4T1eTQtKji/Df3VrMMLzg==' # Change me.
 default['consul']['recursor'] = '8.8.8.8'
 default['consul']['server'] = true
 default['consul']['bootstrap'] = true
+default['consul']['start_join'] = ['0.0.0.0']
 
 # If you want to enable RPC encryption, change these defaults
 # And read more here: http://www.consul.io/docs/agent/encryption.html

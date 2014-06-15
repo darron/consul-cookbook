@@ -96,7 +96,7 @@ end
 bash 'extract consul' do
   cwd ::File.dirname(node['consul']['tmp'])
   code <<-EOH
-    unzip #{node['consul']['filename']}
+    unzip -u #{node['consul']['filename']}
     mv consul #{node['consul']['destination']}
     chmod 755 #{node['consul']['destination']}
     EOH
@@ -122,8 +122,9 @@ bash 'extract consul web_ui' do
   user 'root'
   cwd node['web_ui']['destination']
   code <<-EOH
-    unzip #{node['web_ui']['tmp']}
+    unzip -u #{node['web_ui']['tmp']}
   EOH
+  not_if { ::File.exist?(node['web_ui']['destination']) }
 end
 
 service 'consul' do
