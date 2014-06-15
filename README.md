@@ -6,7 +6,7 @@ Requirements
 
 ### Platform:
 
-Ubuntu 12.04LTS
+Ubuntu 12.04LTS, 14.04LTS.
 
 ### Cookbooks:
 
@@ -16,7 +16,7 @@ Attributes
 ----------
 
 ```
-default['consul']['filename'] = '0.1.0_linux_amd64.zip'
+default['consul']['filename'] = '0.x.x_linux_amd64.zip'
 default['consul']['url'] = "https://dl.bintray.com/mitchellh/consul/#{default['consul']['filename']}"
 default['consul']['checksum'] = '80912eb136acf5ac6ba77284138e4536cd1289870f202ed17ed67bbf2c6b630c'
 default['consul']['tmp'] = "/tmp/#{default['consul']['filename']}"
@@ -38,6 +38,7 @@ default['consul']['encrypt'] = 'p4T1eTQtKji/Df3VrMMLzg==' # Change me.
 default['consul']['recursor'] = '8.8.8.8'
 default['consul']['server'] = true
 default['consul']['bootstrap'] = true
+default['consul']['start_join'] = ['0.0.0.0']
 
 # These are disabled by default.
 
@@ -53,7 +54,7 @@ Recipes
 
 ### consul::default
 
-Installs [Hashicorp's Consul](http://www.consul.io/) on Ubuntu 12.04LTS.
+Installs [Hashicorp's Consul](http://www.consul.io/) on Ubuntu 12.04LTS or Ubuntu 14.04LTS.
 
 To test a Consul cluster, grab my [consul vagrant](https://github.com/darron/consul-vagrant) repo and follow the instructions. Easiest way yet to get a Consul cluster going.
 
