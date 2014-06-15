@@ -22,6 +22,7 @@ include_recipe 'chef-sugar::default'
 
 execute 'apt-get update' do
   command 'apt-get update'
+  ignore_failure true
 end
 
 package 'unzip'
@@ -126,6 +127,13 @@ bash 'extract consul web_ui' do
     mv dist/* . && rm -rf dist
   EOH
   not_if { ::File.exist?("#{node['web_ui']['destination']}/index.html") }
+end
+
+cookbook_file '/usr/bin/consulkv' do
+  source 'consulkv'
+  owner 'root'
+  group 'root'
+  mode '0755'
 end
 
 service 'consul' do

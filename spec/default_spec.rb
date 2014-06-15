@@ -45,6 +45,10 @@ describe 'consul::default' do
     expect(chef_run).to create_template('/etc/default/consul')
   end
 
+  it 'installs the consulkv file' do
+    expect(chef_run).to create_cookbook_file('/usr/bin/consulkv')
+  end
+
   it 'enables and starts the service' do
     expect(chef_run).to enable_service('consul')
     expect(chef_run).to start_service('consul')
