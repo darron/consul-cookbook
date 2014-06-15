@@ -123,8 +123,9 @@ bash 'extract consul web_ui' do
   cwd node['web_ui']['destination']
   code <<-EOH
     unzip -u #{node['web_ui']['tmp']}
+    mv dist/* . && rm -rf dist
   EOH
-  not_if { ::File.exist?(node['web_ui']['destination']) }
+  not_if { ::File.exist?("#{node['web_ui']['destination']}/index.html") }
 end
 
 service 'consul' do

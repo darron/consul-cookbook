@@ -51,4 +51,8 @@ describe 'consul::default' do
     it { should be_enabled }
     it { should be_running }
   end
+
+  describe file('/var/consul_web_ui/index.html') do
+    it { should be_file }
+  end
 end
