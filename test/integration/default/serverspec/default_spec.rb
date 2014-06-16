@@ -52,6 +52,18 @@ describe 'consul::default' do
     it { should be_running }
   end
 
+  describe port(8300) do
+    it { should be_listening }
+  end
+
+  describe port(8400) do
+    it { should be_listening }
+  end
+
+  describe port(8500) do
+    it { should be_listening }
+  end
+
   describe file('/var/consul_web_ui/index.html') do
     it { should be_file }
   end
