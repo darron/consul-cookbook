@@ -36,8 +36,14 @@ main() {
     service:del)
       curl -s "$CONSUL_SERVER/v1/agent/service/deregister/$2"
       ;;
-    service:ls)
-      curl -s "$CONSUL_SERVER/v1/agent/services"
+    services)
+      curl -s "$CONSUL_SERVER/v1/agent/services" | jq '.[]'
+      ;;
+    services:catalog)
+      for service in $( curl -s "$CONSUL_SERVER/v1/catalog/services" | jq 'keys' | jq '.[]' ); do
+        SERVICE=$(echo $service | cut -d '"' -f 2)
+        curl -s "$CONSUL_SERVER/v1/catalog/service/$SERVICE" | jq '.[]'
+      done
       ;;
 	esac
 }
