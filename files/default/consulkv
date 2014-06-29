@@ -42,7 +42,7 @@ main() {
     services:catalog)
       for service in $( curl -s "$CONSUL_SERVER/v1/catalog/services" | jq 'keys' | jq '.[]' ); do
         SERVICE=$(echo $service | cut -d '"' -f 2)
-        curl -s "$CONSUL_SERVER/v1/catalog/service/$SERVICE" | jq '.[]'
+        curl -s "$CONSUL_SERVER/v1/catalog/service/$SERVICE" | jq -c '.[]'
       done
       ;;
   esac
