@@ -36,6 +36,10 @@ main() {
     service:del)
       curl -s "$CONSUL_SERVER/v1/agent/service/deregister/$2"
       ;;
+    service:health)
+      STATUS=$(curl -s "$CONSUL_SERVER/v1/health/service/$2" | jq '.[].Checks[0].Status' | cut -d '"' -f 2)
+      echo $STATUS
+      ;;
     services)
       curl -s "$CONSUL_SERVER/v1/agent/services" | jq -c '.[]'
       ;;
