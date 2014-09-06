@@ -18,13 +18,13 @@
 # limitations under the License.
 #
 
-default['consul']['filename'] = '0.3.0_linux_amd64.zip'
+default['consul']['filename'] = '0.4.0_linux_amd64.zip'
 default['consul']['url'] = "https://dl.bintray.com/mitchellh/consul/#{default['consul']['filename']}"
-default['consul']['checksum'] = 'da1337ab3b236bad19b791a54a8df03a8c2a340500a392000c21608696957b15'
+default['consul']['checksum'] = '4f8cd1cc5d90be9e1326fee03d3c96289a4f8b9b6ccb062d228125a1adc9ea0c'
 default['consul']['tmp'] = "/tmp/#{default['consul']['filename']}"
 default['consul']['destination'] = '/usr/local/bin/consul'
 
-default['web_ui']['filename'] = '0.3.0_web_ui.zip'
+default['web_ui']['filename'] = '0.4.0_web_ui.zip'
 default['web_ui']['url'] = "https://dl.bintray.com/mitchellh/consul/#{default['web_ui']['filename']}"
 default['web_ui']['tmp'] = "/tmp/#{default['web_ui']['filename']}"
 default['web_ui']['destination'] = '/var/consul_web_ui'
