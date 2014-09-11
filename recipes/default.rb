@@ -20,11 +20,6 @@
 
 include_recipe 'chef-sugar::default'
 
-execute 'apt-get update' do
-  command 'apt-get update'
-  ignore_failure true
-end
-
 package 'unzip'
 package 'curl'
 
