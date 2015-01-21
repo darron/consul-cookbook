@@ -44,7 +44,7 @@ task :berksintall do
 end
 
 desc "Syntax check and build Vagrant box"
-task :build_vagrant => [:cleanup_vendor, :cleanup_vagrant, :lint, :spec, :tailor, :taste, :rubocop, :berksintall, :vagrantup]
+task :build_vagrant => [:cleanup_vendor, :cleanup_vagrant, :lint, :spec, :rubocop, :berksintall, :vagrantup]
 task :vagrant => :build_vagrant
 
 task :vagrantup do
