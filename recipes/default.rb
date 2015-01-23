@@ -89,14 +89,12 @@ remote_file node['consul']['tmp'] do
   mode 00755
 end
 
-bash 'extract consul' do
-  cwd ::File.dirname(node['consul']['tmp'])
-  code <<-EOH
-    unzip -u #{node['consul']['filename']}
-    mv consul #{node['consul']['destination']}
-    chmod 755 #{node['consul']['destination']}
-    EOH
-  not_if { ::File.exist?(node['consul']['destination']) }
+ark 'consul' do
+  url node['consul']['url']
+  has_binaries ['consul']
+  version '0.5rc1'
+  mode 00755
+  action :install
 end
 
 remote_file node['web_ui']['tmp'] do
