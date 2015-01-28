@@ -5,6 +5,7 @@ gem 'chefspec', '~> 4.2'
 gem 'foodcritic', '~> 4.0.0'
 gem 'rake', '>= 10.2'
 gem 'rubocop', '= 0.27.1'
+gem 'chef-sugar'
 
 group :integration do
   gem 'guard', '>= 2.6'

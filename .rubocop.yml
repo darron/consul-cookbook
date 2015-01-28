@@ -4,6 +4,6 @@ AllCops:
   Exclude:
     - vendor/**/*
     - foodcritic/**/*
-    - Rakefile
+    - Guardfile
 SingleSpaceBeforeFirstArg:
   Enabled: false
