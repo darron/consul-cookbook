@@ -116,7 +116,7 @@ bash 'extract consul web_ui' do
   user 'root'
   cwd node['web_ui']['destination']
   code <<-EOH
-    unzip -u #{node['web_ui']['tmp']}
+    unzip -u node['web_ui']['tmp']
     mv dist/* . && rm -rf dist
   EOH
   not_if { ::File.exist?("#{node['web_ui']['destination']}/index.html") }
